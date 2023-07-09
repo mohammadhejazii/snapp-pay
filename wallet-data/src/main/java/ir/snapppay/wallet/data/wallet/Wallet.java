@@ -1,5 +1,6 @@
 package ir.snapppay.wallet.data.wallet;
 
+import ir.snapppay.wallet.data.user.User;
 import ir.snapppay.wallet.infrastructure.data.AbstractAuditEntity;
 import ir.snapppay.wallet.io.wallet.WalletState;
 import jakarta.persistence.*;
@@ -42,6 +43,10 @@ public class Wallet extends AbstractAuditEntity<Long> {
 
     @Column(name = "title")
     private String title;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_wallet_userId_user_id"))
+    private User user;
 
 
 }
