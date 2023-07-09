@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/snapp-pay-wallet.iml" filepath="$PROJECT_DIR$/snapp-pay-wallet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wallet-application/wallet-application.iml" filepath="$PROJECT_DIR$/wallet-application/wallet-application.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wallet-data/wallet-data.iml" filepath="$PROJECT_DIR$/wallet-data/wallet-data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wallet-io/wallet-io.iml" filepath="$PROJECT_DIR$/wallet-io/wallet-io.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wallet-service/wallet-service.iml" filepath="$PROJECT_DIR$/wallet-service/wallet-service.iml" />
     </modules>
   </component>
 </project>

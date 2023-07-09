@@ -4,6 +4,10 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/wallet-io/pom.xml" />
+        <option value="$PROJECT_DIR$/wallet-application/pom.xml" />
+        <option value="$PROJECT_DIR$/wallet-service/pom.xml" />
+        <option value="$PROJECT_DIR$/wallet-data/pom.xml" />
       </list>
     </option>
   </component>

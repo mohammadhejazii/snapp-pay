@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="wallet-io" />
+        <module name="wallet-application" />
+        <module name="snapp-pay-wallet" />
+        <module name="wallet-service" />
+        <module name="wallet-data" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="snapp-pay-wallet" target="17" />
+      <module name="wallet-application" target="17" />
+      <module name="wallet-data" target="17" />
+      <module name="wallet-io" target="17" />
+      <module name="wallet-service" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="snapp-pay-wallet" options="-parameters" />
+      <module name="wallet-application" options="-parameters" />
+      <module name="wallet-data" options="-parameters" />
+      <module name="wallet-io" options="-parameters" />
+      <module name="wallet-service" options="-parameters" />
+    </option>
+  </component>
+</project>
