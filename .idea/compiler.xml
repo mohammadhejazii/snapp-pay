@@ -8,12 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="wallet-io" />
         <module name="wallet-application" />
-        <module name="snapp-pay-wallet" />
         <module name="wallet-service" />
+        <module name="infrastructure" />
         <module name="wallet-data" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="infrastructure" target="17" />
       <module name="snapp-pay-wallet" target="17" />
       <module name="wallet-application" target="17" />
       <module name="wallet-data" target="17" />
@@ -23,11 +24,12 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="snapp-pay-wallet" options="-parameters" />
+      <module name="infrastructure" options="" />
+      <module name="snapp-pay-wallet" options="" />
       <module name="wallet-application" options="-parameters" />
-      <module name="wallet-data" options="-parameters" />
-      <module name="wallet-io" options="-parameters" />
-      <module name="wallet-service" options="-parameters" />
+      <module name="wallet-data" options="" />
+      <module name="wallet-io" options="" />
+      <module name="wallet-service" options="" />
     </option>
   </component>
 </project>

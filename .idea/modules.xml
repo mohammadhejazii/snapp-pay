@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/infrastructure/infrastructure.iml" filepath="$PROJECT_DIR$/infrastructure/infrastructure.iml" />
       <module fileurl="file://$PROJECT_DIR$/snapp-pay-wallet.iml" filepath="$PROJECT_DIR$/snapp-pay-wallet.iml" />
       <module fileurl="file://$PROJECT_DIR$/wallet-application/wallet-application.iml" filepath="$PROJECT_DIR$/wallet-application/wallet-application.iml" />
       <module fileurl="file://$PROJECT_DIR$/wallet-data/wallet-data.iml" filepath="$PROJECT_DIR$/wallet-data/wallet-data.iml" />
