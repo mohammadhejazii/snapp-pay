@@ -1,8 +1,9 @@
 package ir.snapppay.wallet.data.wallet.account;
 
-import ir.snapppay.wallet.data.user.User;
 import ir.snapppay.wallet.data.wallet.Wallet;
 import ir.snapppay.wallet.infrastructure.data.AbstractAuditEntity;
+import ir.snapppay.wallet.infrastructure.data.Money;
+import ir.snapppay.wallet.io.wallet.account.AccountState;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
@@ -16,7 +17,10 @@ import org.hibernate.envers.Audited;
  */
 
 @Entity
-@Table(name = "account")
+@Table(name = "account", uniqueConstraints = {
+        @UniqueConstraint(name = "unique_account_walletId_currency", columnNames = {"wallet_id", "currency_unit"}),
+        @UniqueConstraint(name = "unique_account_number", columnNames = {"number"})
+})
 @Getter
 @Setter
 @NoArgsConstructor
@@ -33,9 +37,18 @@ public class Account extends AbstractAuditEntity<Long> {
     @SequenceGenerator(sequenceName = "account_seq", allocationSize = 1, name = "account_seq")
     private Long id;
 
+    @Column(name = "number", length = 16, nullable = false, unique = true)
+    private String number;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "wallet_id", foreignKey = @ForeignKey(name = "fk_account_walletId_wallet_id"))
     private Wallet wallet;
+
+    @Embedded
+    private Money balance;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "state", nullable = false)
+    private AccountState state;
 
 }

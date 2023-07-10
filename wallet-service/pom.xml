@@ -15,6 +15,18 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.source>${java.version}</maven.compiler.source>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>ir.snapppay.snapp-pay-wallet</groupId>
+            <artifactId>wallet-data</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>6.0.10</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>

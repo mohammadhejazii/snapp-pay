@@ -1,0 +1,27 @@
+spring:
+    application:
+        name: snapp-pay-wallet-${user.name}
+
+database:
+    show-sql: false
+    host: 127.0.0.1
+    port: 5432
+    name: snapp_pay
+    user: postgres
+    password: postgres
+    schema: wallet
+    jdbc-url: jdbc:postgresql://${database.host}:${database.port}/${database.name}
+    datasource-class: org.postgresql.ds.PGSimpleDataSource
+    driver-class: org.postgresql.Driver
+    dialect-class: org.hibernate.dialect.PostgresPlusDialect
+    connection:
+        maximum-pool-size: 30
+        max-lifetime: 30000
+
+
+server:
+    port: 0
+logging:
+    level:
+        root: warn
+
