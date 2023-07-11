@@ -18,6 +18,7 @@
     </properties>
 
     <modules>
+        <module>infrastructure</module>
         <module>wallet-io</module>
         <module>wallet-data</module>
         <module>wallet-service</module>

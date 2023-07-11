@@ -40,7 +40,7 @@ public class WalletApplicationConfig implements WebMvcConfigurer {
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.addBasenames("classpath:common_exceptions", "classpath:cargo_message_description", "classpath:cargo_io_exception_message", "classpath:cargo_validation_message");
+        messageSource.addBasenames("classpath:wallet_exception_message");
         messageSource.setDefaultEncoding("UTF-8");
         messageSource.setUseCodeAsDefaultMessage(true);
         return messageSource;

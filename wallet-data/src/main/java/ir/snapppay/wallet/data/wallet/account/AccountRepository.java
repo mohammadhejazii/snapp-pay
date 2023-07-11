@@ -1,6 +1,5 @@
 package ir.snapppay.wallet.data.wallet.account;
 
-import ir.snapppay.wallet.data.wallet.Wallet;
 import ir.snapppay.wallet.infrastructure.data.BaseRepository;
 import org.springframework.stereotype.Repository;
 

@@ -17,7 +17,7 @@ import org.hibernate.envers.Audited;
 
 
 @Entity
-@Table(name = "wallet", uniqueConstraints = {@UniqueConstraint(name = "unique_wallet_code", columnNames = "wallet_code")})
+@Table(name = "wallet", uniqueConstraints = {@UniqueConstraint(name = "unique_wallet_code", columnNames = "code")})
 @Getter
 @Setter
 @NoArgsConstructor
@@ -35,10 +35,10 @@ public class Wallet extends AbstractAuditEntity<Long> {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "wallet_code", nullable = false)
+    @Column(name = "state", nullable = false)
     private WalletState state;
 
-    @Column(name = "wallet_code", nullable = false, updatable = false)
+    @Column(name = "code", nullable = false, updatable = false)
     private String code;
 
     @Column(name = "title")

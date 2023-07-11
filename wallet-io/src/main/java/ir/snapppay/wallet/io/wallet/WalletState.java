@@ -5,4 +5,9 @@ package ir.snapppay.wallet.io.wallet;
  * @since 2023.07.09
  */
 public enum WalletState {
+
+    BLOCK,
+    ACTIVE
+
+
 }

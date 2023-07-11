@@ -1,9 +1,28 @@
+version: '3.8'
 services:
-  postgres:
-    image: 'postgres:latest'
-    environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
-    ports:
-      - '5432'
+    postgres:
+        container_name: wallet-database
+        image: postgres:latest
+        restart: always
+        environment:
+            - POSTGRES_DB=snapp_pay
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        ports:
+            - 5432:5432
+        volumes:
+            - wallet-database-volume:/var/postgresql/data
+    wallet:
+        container_name: snapp-pay-wallet
+        image: wallet:latest
+        environment:
+            - database.host=postgres
+        ports:
+            - 8080:8080
+        depends_on:
+            - postgres
+
+
+volumes:
+    wallet-database-volume:
+        name: wallet-database-volume

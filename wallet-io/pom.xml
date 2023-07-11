@@ -24,15 +24,17 @@
             <artifactId>infrastructure</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>6.0.10</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
+        <finalName>${project.artifactId}</finalName>
+        <directory>${project.basedir}/target</directory>
     </build>
 
 </project>

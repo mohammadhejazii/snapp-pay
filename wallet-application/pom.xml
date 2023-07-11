@@ -38,10 +38,17 @@
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
+        <directory>${project.basedir}/target</directory>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <layers>
+                        <enabled>true</enabled>
+                    </layers>
+                </configuration>
             </plugin>
         </plugins>
     </build>

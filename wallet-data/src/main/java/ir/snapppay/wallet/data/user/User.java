@@ -14,8 +14,8 @@ import org.hibernate.envers.Audited;
  */
 @Entity
 @Table(name = "users", uniqueConstraints = {
-        @UniqueConstraint(name = "users_cellphoneNumber", columnNames = "cell_phone_number"),
-        @UniqueConstraint(name = "users_userName", columnNames = "user_name"),
+    @UniqueConstraint(name = "users_cellphoneNumber", columnNames = "cell_phone_number"),
+    @UniqueConstraint(name = "users_userName", columnNames = "user_name"),
 })
 @Getter
 @Setter
@@ -33,16 +33,16 @@ public class User extends AbstractAuditEntity<Long> {
     @SequenceGenerator(sequenceName = "users_seq", allocationSize = 1, name = "users_seq")
     private Long id;
 
-    @Column(name = "cell_phone_number", nullable = false)
+    @Column(name = "cell_phone_number", length = 11, nullable = false)
     private String cellPhoneNumber;
 
-    @Column(name = "user_name", nullable = false)
+    @Column(name = "user_name", length = 32, nullable = false)
     private String username;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", length = 32, nullable = false)
     private String name;
 
-    @Column(name = "family", nullable = false)
+    @Column(name = "family", length = 32, nullable = false)
     private String family;
 
     @Column(name = "password", nullable = false)

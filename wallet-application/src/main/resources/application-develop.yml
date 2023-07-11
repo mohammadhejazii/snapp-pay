@@ -4,12 +4,12 @@ spring:
 
 database:
     show-sql: false
-    host: 127.0.0.1
+    host: localhost
     port: 5432
     name: snapp_pay
     user: postgres
     password: postgres
-    schema: wallet
+    schema: public
     jdbc-url: jdbc:postgresql://${database.host}:${database.port}/${database.name}
     datasource-class: org.postgresql.ds.PGSimpleDataSource
     driver-class: org.postgresql.Driver
@@ -20,8 +20,8 @@ database:
 
 
 server:
-    port: 0
+    port: 8080
 logging:
     level:
-        root: warn
+        root: info
 
