@@ -1,7 +1,15 @@
 package ir.snapppay.wallet.application.controller.wallet.account.transaction;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import ir.snapppay.wallet.infrastructure.io.PagePortable;
+import ir.snapppay.wallet.io.wallet.account.transaction.TransactionResponse;
+import ir.snapppay.wallet.io.wallet.account.transaction.TransactionSearchFilter;
+import ir.snapppay.wallet.service.wallet.account.transaction.TransactionService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author mohammad hejazi - smohammadhejazii@gmail.com
@@ -11,5 +19,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/wallets/{walletId}/accounts/{accountId}/transactions")
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class TransactionController {
+
+    private final TransactionService transactionService;
+
+    public ResponseEntity<PagePortable<TransactionResponse>> list(final @PathVariable Long walletId,
+                                                                  final @PathVariable Long accountId,
+                                                                  final @ModelAttribute TransactionSearchFilter searchFilter,
+                                                                  final Pageable pageable) {
+        Page<TransactionResponse> transactions = transactionService.list(walletId, accountId, searchFilter, pageable);
+        return ResponseEntity.ok(PagePortable.of(transactions));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TransactionResponse> load(final @PathVariable Long walletId,
+                                                    final @PathVariable Long accountId,
+                                                    final @PathVariable Long id) {
+        TransactionResponse transaction = transactionService.load(walletId, accountId, id);
+        return ResponseEntity.ok(transaction);
+    }
+
 }

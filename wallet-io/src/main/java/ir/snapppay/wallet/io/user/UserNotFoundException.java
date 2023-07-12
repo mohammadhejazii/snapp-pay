@@ -1,6 +1,7 @@
 package ir.snapppay.wallet.io.user;
 
 import ir.snapppay.wallet.infrastructure.io.BaseBusinessException;
+import org.springframework.http.HttpStatus;
 
 import java.util.function.Supplier;
 
@@ -33,7 +34,10 @@ public class UserNotFoundException extends BaseBusinessException implements Supp
         return exception;
     }
 
-
+    @Override
+    public int getHttpStatus() {
+        return HttpStatus.NOT_FOUND.value();
+    }
 
     @Override
     public String getMessageKey() {

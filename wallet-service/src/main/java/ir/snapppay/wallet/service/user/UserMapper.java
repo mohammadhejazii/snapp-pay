@@ -12,8 +12,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
-
-
     public User convert(final RegisterUser request) {
         return User.builder()
             .username(request.getUsername())

@@ -38,7 +38,13 @@ public class UserService {
         return findUserService.count(searchFilter);
     }
 
+    @Transactional(readOnly = true)
     public boolean exists(final UserSearchFilter searchFilter) {
         return count(searchFilter) > 0;
+    }
+
+    @Transactional(readOnly = true)
+    public UserResponse load(final Long id) {
+        return findUserService.load(id);
     }
 }

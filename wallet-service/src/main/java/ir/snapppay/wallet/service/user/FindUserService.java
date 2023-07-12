@@ -3,6 +3,7 @@ package ir.snapppay.wallet.service.user;
 import ir.snapppay.wallet.data.user.User;
 import ir.snapppay.wallet.data.user.UserRepository;
 import ir.snapppay.wallet.infrastructure.io.UserSearchFilter;
+import ir.snapppay.wallet.io.user.UserNotFoundException;
 import ir.snapppay.wallet.io.user.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,10 @@ public class FindUserService {
     public Long count(final UserSearchFilter searchFilter) {
         Specification<User> specification = userSpecification.of(searchFilter);
         return userRepository.count(specification);
+    }
+
+    public UserResponse load(final Long id) {
+        User user = userRepository.findById(id).orElseThrow(UserNotFoundException.instanceById(id));
+        return userMapper.convert(user);
     }
 }
