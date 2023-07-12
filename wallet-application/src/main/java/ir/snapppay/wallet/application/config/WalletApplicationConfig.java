@@ -8,9 +8,11 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import ir.snapppay.wallet.service.config.ImportWalletServiceModule;
+import lombok.RequiredArgsConstructor;
 import org.joda.money.BigMoney;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -35,6 +37,7 @@ import java.util.List;
 @Configuration
 @ImportWalletServiceModule
 @ComponentScan(basePackages = {"ir.snapppay.wallet.application"})
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class WalletApplicationConfig implements WebMvcConfigurer {
 
     @Bean

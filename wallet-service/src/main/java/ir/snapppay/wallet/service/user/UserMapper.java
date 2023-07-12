@@ -20,6 +20,7 @@ public class UserMapper {
             .cellPhoneNumber(request.getCellPhoneNumber())
             .name(request.getName())
             .family(request.getFamily())
+            .Roles(request.getRoles())
             .build();
     }
 

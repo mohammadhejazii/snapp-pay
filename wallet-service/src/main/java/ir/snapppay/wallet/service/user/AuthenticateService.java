@@ -4,6 +4,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import ir.snapppay.wallet.data.user.User;
 import ir.snapppay.wallet.data.user.UserRepository;
+import ir.snapppay.wallet.data.user.security.UserSecurityService;
 import ir.snapppay.wallet.io.user.JwtResponse;
 import ir.snapppay.wallet.io.user.LoginRequest;
 import ir.snapppay.wallet.io.user.UserNotFoundException;
@@ -11,6 +12,7 @@ import ir.snapppay.wallet.io.user.UserPasswordNotMatchException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +35,8 @@ public class AuthenticateService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder encoder;
+    private final JwtUtils jwtUtils;
+    private final UserSecurityService userSecurityService;
 
     @Value("${security.jwt.secret}")
     private String secret;
@@ -45,35 +49,14 @@ public class AuthenticateService {
         if (!encoder.matches(request.getPassword(), user.getPassword())) {
             throw UserPasswordNotMatchException.wrongAuthenticationException();
         }
-        String jwt = createToken(user);
-        String refreshToken = createRefreshToken(jwt);
+        UserDetails userDetails = userSecurityService.loadUserByUsername(user.getUsername());
+        String jwt = jwtUtils.generateToken(userDetails);
+        String refreshToken = jwtUtils.createRefreshToken(jwt);
         return JwtResponse.builder().token(jwt).refreshToken(refreshToken).build();
     }
 
 
-    private String createToken(final User user) {
-        ZonedDateTime expiration = ZonedDateTime.now().plus(10, ChronoUnit.MINUTES);
-        return Jwts.builder()
-            .setSubject(user.getUsername())
-            .setIssuedAt(Date.from(LocalDateTime.now().toInstant(ZoneOffset.UTC)))
-            .claim("user.id", user.getId())
-            .claim("user.username", user.getUsername())
-            .signWith(SignatureAlgorithm.HS256, secret)
-            .setExpiration(Date.from(expiration.toInstant()))
-            .compact();
-    }
 
-
-    public String createRefreshToken(final String token) {
-        Instant expiration = LocalDateTime.now().toInstant(ZoneOffset.UTC).plus(100, ChronoUnit.DAYS);
-        return Jwts.builder()
-            .setSubject("refresh")
-            .setIssuedAt(Date.from(LocalDateTime.now().toInstant(ZoneOffset.UTC)))
-            .claim("user.token", token)
-            .signWith(SignatureAlgorithm.HS256, refreshSecret)
-            .setExpiration(Date.from(expiration))
-            .compact();
-    }
 
 
 }

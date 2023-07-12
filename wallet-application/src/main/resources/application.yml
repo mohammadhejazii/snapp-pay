@@ -28,9 +28,6 @@ spring:
             hibernate.format_sql: false
             hibernate.order_by.default_null_ordering: last
             hibernate.envers.audit_table_suffix: _histories
-
-    autoconfigure:
-        exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
     profiles:
         active: develop
     jackson:
@@ -55,3 +52,12 @@ logging:
         root: info
     file:
         name: ${user.home}/logs/application/${spring.application.name}/${spring.application.name}.log
+
+
+security:
+    basic:
+        enable: false
+    ignored: /**
+
+springdoc:
+    enable-spring-security: false

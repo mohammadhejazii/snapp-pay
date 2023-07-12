@@ -19,6 +19,7 @@ public class RegisterUser {
     private String family;
     private String password;
     private String cellPhoneNumber;
+    private String roles;
 
     public static RegisterUser of(final String username, final String password, final String name, final String family, final String cellPhoneNumber) {
         return RegisterUser.builder()
@@ -27,6 +28,7 @@ public class RegisterUser {
             .name(name)
             .family(family)
             .cellPhoneNumber(cellPhoneNumber)
+            .roles("ADMIN")
             .build();
     }
 

@@ -12,15 +12,15 @@ services:
             - 5432:5432
         volumes:
             - wallet-database-volume:/var/postgresql/data
-    wallet:
-        container_name: snapp-pay-wallet
-        image: wallet:latest
-        environment:
-            - database.host=postgres
-        ports:
-            - 8080:8080
-        depends_on:
-            - postgres
+#    wallet:
+#        container_name: snapp-pay-wallet
+#        image: wallet:latest
+#        environment:
+#            - database.host=postgres
+#        ports:
+#            - 8080:8080
+#        depends_on:
+#            - postgres
 
 
 volumes:
