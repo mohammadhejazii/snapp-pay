@@ -20,3 +20,7 @@ to run docker-compose just run
 
 ./runner-script.sh
 
+
+and import snapp-pay.postman_collection.json into postman,services listed in collection.
+
+test skipped due to im so busy, but transaction service verify method designed to use in unit test.
