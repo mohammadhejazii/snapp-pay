@@ -21,14 +21,14 @@ public class RegisterUser {
     private String cellPhoneNumber;
     private String roles;
 
-    public static RegisterUser of(final String username, final String password, final String name, final String family, final String cellPhoneNumber) {
+    public static RegisterUser of(final String username, final String password, final String name, final String family, final String cellPhoneNumber,final String roles) {
         return RegisterUser.builder()
             .username(username)
             .password(password)
             .name(name)
             .family(family)
             .cellPhoneNumber(cellPhoneNumber)
-            .roles("ADMIN")
+            .roles(roles)
             .build();
     }
 
