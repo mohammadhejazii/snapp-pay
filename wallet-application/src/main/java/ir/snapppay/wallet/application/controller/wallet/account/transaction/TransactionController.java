@@ -1,6 +1,7 @@
 package ir.snapppay.wallet.application.controller.wallet.account.transaction;
 
 import ir.snapppay.wallet.infrastructure.io.PagePortable;
+import ir.snapppay.wallet.io.wallet.account.transaction.RegisterTransaction;
 import ir.snapppay.wallet.io.wallet.account.transaction.TransactionResponse;
 import ir.snapppay.wallet.io.wallet.account.transaction.TransactionSearchFilter;
 import ir.snapppay.wallet.service.wallet.account.transaction.TransactionService;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -39,5 +41,14 @@ public class TransactionController {
         TransactionResponse transaction = transactionService.load(walletId, accountId, id);
         return ResponseEntity.ok(transaction);
     }
+
+    @PostMapping
+    public ResponseEntity<TransactionResponse> load(final @PathVariable Long walletId,
+                                                    final @PathVariable Long accountId,
+                                                    final @Validated @RequestBody RegisterTransaction request) {
+        TransactionResponse transaction = transactionService.register(walletId, accountId, request);
+        return ResponseEntity.ok(transaction);
+    }
+
 
 }

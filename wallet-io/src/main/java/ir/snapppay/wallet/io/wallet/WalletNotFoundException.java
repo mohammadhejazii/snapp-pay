@@ -22,6 +22,12 @@ public class WalletNotFoundException extends BaseBusinessException implements Su
         return exception;
     }
 
+    public static WalletNotFoundException instanceByUserId(final Long userId) {
+        WalletNotFoundException exception = new WalletNotFoundException("error.wallet.user.id.not-found.exception");
+        exception.addMessageArg("userId", userId);
+        return exception;
+    }
+
     @Override
     public int getHttpStatus() {
         return HttpStatus.NOT_FOUND.value();

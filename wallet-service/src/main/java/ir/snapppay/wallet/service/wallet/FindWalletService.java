@@ -2,7 +2,6 @@ package ir.snapppay.wallet.service.wallet;
 
 import ir.snapppay.wallet.data.wallet.Wallet;
 import ir.snapppay.wallet.data.wallet.WalletRepository;
-import ir.snapppay.wallet.infrastructure.io.NotImplementedException;
 import ir.snapppay.wallet.io.wallet.WalletNotFoundException;
 import ir.snapppay.wallet.io.wallet.WalletResponse;
 import ir.snapppay.wallet.io.wallet.WalletSearchFilter;
@@ -30,6 +29,8 @@ public class FindWalletService {
     }
 
     public Page<WalletResponse> list(final WalletSearchFilter searchFilter, final Pageable pageable) {
-        throw NotImplementedException.of();
+        // skip specification
+        Page<Wallet> wallets = walletRepository.findAll(pageable);
+        return wallets.map(walletMapper::convert);
     }
 }

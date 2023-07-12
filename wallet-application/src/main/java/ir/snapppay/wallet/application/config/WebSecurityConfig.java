@@ -52,6 +52,9 @@ public class WebSecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .addFilterAfter(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
             .userDetailsService(userSecurityService)
+            .exceptionHandling(httpSecurityExceptionHandlingConfigurer -> {
+
+            })
             .build();
     }
 

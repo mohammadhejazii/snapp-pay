@@ -17,7 +17,9 @@ import org.hibernate.envers.Audited;
 
 
 @Entity
-@Table(name = "wallet", uniqueConstraints = {@UniqueConstraint(name = "unique_wallet_code", columnNames = "code")})
+@Table(name = "wallet", uniqueConstraints = {
+    @UniqueConstraint(name = "unique_wallet_code", columnNames = "code"),
+    @UniqueConstraint(name = "unique_wallet_user", columnNames = "user_id")})
 @Getter
 @Setter
 @NoArgsConstructor
@@ -44,8 +46,8 @@ public class Wallet extends AbstractAuditEntity<Long> {
     @Column(name = "title")
     private String title;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_wallet_userId_user_id"))
+    @OneToOne(optional = false)
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_wallet_userId_user_id"), unique = true)
     private User user;
 
 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author mohammad hejazi - smohammadhejazii@gmail.com
@@ -17,11 +18,15 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class AccountService {
+    private final FindAccountService findAccountService;
+
+    @Transactional(readOnly = true)
     public Page<AccountResponse> list(final Long walletId, final AccountSearchFilter searchFilter, final Pageable pageable) {
-        throw NotImplementedException.of();
+        return findAccountService.list(walletId,searchFilter,pageable);
     }
 
+    @Transactional(readOnly = true)
     public AccountResponse load(final Long walletId, final Long id) {
-        throw NotImplementedException.of();
+        return findAccountService.load(walletId,id);
     }
 }
