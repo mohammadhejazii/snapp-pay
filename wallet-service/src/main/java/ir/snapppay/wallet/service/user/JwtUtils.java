@@ -32,14 +32,6 @@ public class JwtUtils {
     @Value("${security.jwt.refresh-secret}")
     private String refreshSecret;
 
-
-    public String createToken(final User user) {
-
-        ZonedDateTime expiration = ZonedDateTime.now().plus(10, ChronoUnit.MINUTES);
-        return Jwts.builder().setSubject(user.getUsername()).setIssuedAt(Date.from(LocalDateTime.now().toInstant(ZoneOffset.UTC))).claim("user.id", user.getId()).claim("user.username", user.getUsername()).signWith(SignatureAlgorithm.HS256, secret).setExpiration(Date.from(expiration.toInstant())).compact();
-    }
-
-
     public String createRefreshToken(final String token) {
         Instant expiration = LocalDateTime.now().toInstant(ZoneOffset.UTC).plus(100, ChronoUnit.DAYS);
         return Jwts.builder().setSubject("refresh").setIssuedAt(Date.from(LocalDateTime.now().toInstant(ZoneOffset.UTC))).claim("user.token", token).signWith(SignatureAlgorithm.HS256, refreshSecret).setExpiration(Date.from(expiration)).compact();
@@ -85,7 +77,10 @@ public class JwtUtils {
     }
 
     private String createToken(Map<String, Object> claims, String subject) {
-        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis())).setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)).signWith(SignatureAlgorithm.HS256, secret).compact();
+        return Jwts.builder().setClaims(claims).setSubject(subject)
+            .setIssuedAt(new Date(System.currentTimeMillis()))
+            .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 100))
+            .signWith(SignatureAlgorithm.HS256, secret).compact();
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {

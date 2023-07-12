@@ -24,6 +24,7 @@ public class WalletController {
 
     private final WalletService walletService;
 
+    @GetMapping
     public ResponseEntity<PagePortable<WalletResponse>> list(final @ModelAttribute WalletSearchFilter searchFilter,
                                                              final Pageable pageable) {
         Page<WalletResponse> wallets = walletService.list(searchFilter, pageable);

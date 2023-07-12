@@ -26,6 +26,7 @@ public class TransactionController {
 
     private final TransactionService transactionService;
 
+    @GetMapping
     public ResponseEntity<PagePortable<TransactionResponse>> list(final @PathVariable Long walletId,
                                                                   final @PathVariable Long accountId,
                                                                   final @ModelAttribute TransactionSearchFilter searchFilter,
@@ -43,9 +44,9 @@ public class TransactionController {
     }
 
     @PostMapping
-    public ResponseEntity<TransactionResponse> load(final @PathVariable Long walletId,
-                                                    final @PathVariable Long accountId,
-                                                    final @Validated @RequestBody RegisterTransaction request) {
+    public ResponseEntity<TransactionResponse> register(final @PathVariable Long walletId,
+                                                        final @PathVariable Long accountId,
+                                                        final @Validated @RequestBody RegisterTransaction request) {
         TransactionResponse transaction = transactionService.register(walletId, accountId, request);
         return ResponseEntity.ok(transaction);
     }
