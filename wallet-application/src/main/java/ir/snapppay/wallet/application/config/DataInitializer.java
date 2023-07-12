@@ -47,10 +47,10 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(final String... args) throws Exception {
 
-        UserResponse user1 = initializeUser(RegisterUser.of("09123456789", "09123456789", "user1-name", "user1-family", "09123456789"));
         UserResponse user2 = initializeUser(RegisterUser.of("09123456780", "09123456780", "user2-name", "user2-family", "09123456780"));
         UserResponse user3 = initializeUser(RegisterUser.of("09123456781", "09123456781", "user3-name", "user3-family", "09123456781"));
         UserResponse user4 = initializeUser(RegisterUser.of("09123456782", "09123456782", "user4-name", "user4-family", "09123456782"));
+        UserResponse user1 = initializeUser(RegisterUser.of("09123456783", "09123456783", "user1-name", "user1-family", "09123456783"));
 
         WalletResponse walletUser1 = initializeWallet(user1);
         WalletResponse walletUser2 = initializeWallet(user2);
